@@ -14,13 +14,36 @@
     <div id="root"></div>
 
     <script type="text/babel">
-      class App extends React.Component {
-        render() {
-          return <h1>Hello world!</h1>
+      class App extends Component {
+        state = {
+          // state is initialized by a props
+          title: this.props.title,
         }
+      
+        handleChangeTitle = (e) => {
+          // this.setState allows us to update the state value
+          this.setState({ title: e.target.value })
+        }
+      
+        render() {
+          return (
+            <div className='App'>
+              <h1> this is my first React Component</h1>
+              <label htmlFor='titleInput'>Title </label>
+              <input
+                type='text'
+                id='titleInput'
+                onChange={this.handleChangeTitle}
+                value={this.state.title}
+              />
+              <h3>{this.state.title}</h3>
+            </div>
+          )
+        }
+        
       }
-
       ReactDOM.render(<App />, document.getElementById('root'))
+      export default App
     </script>
   </body>
 </html>
